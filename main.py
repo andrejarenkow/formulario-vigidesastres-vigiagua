@@ -142,7 +142,7 @@ with container_data_editor:
             edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Sem informação', 'Funcionando', 'Parada/danificada']], use_container_width=True, hide_index=True)  # Exibe os dados do município para edição
             
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
-            submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
+            submit = st.button('Enviar atualização!', type='primary', on_click=reset)
             
             st.markdown(f'''
             <style>
@@ -169,18 +169,17 @@ with container_data_editor:
                         mudancas = pd.concat([mudancas,pd.DataFrame({
                             'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
                             'Município': data_to_send['Município'][idx],
-                            'Antes': dados_antigos.loc[idx].to_dict(),
-                            'Depois': data_to_send.loc[idx].to_dict()})], ignore_index=True)
+                            'Antes': dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]],
+                            'Depois': data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]})], ignore_index=True)
                 #data_to_send = [dados.columns.tolist()] + dados.values.tolist()
                 # Atualizar a planilha
                 conn.update(worksheet='Tabela1', data=data_to_send)
                     
                 # Exibe uma mensagem de sucesso quando a atualização é enviada
-                st.success(f'Atualização enviada! {len(mudancas)} linhas foram atualizadas.")!', icon="✅")
+                st.success(f'Atualização enviada! {len(mudancas)} linhas foram atualizadas.!', icon="✅")
                 
                 st.dataframe(mudancas)
                 st.cache_data.clear()  # Limpa o cache de dados
-                reset()
                 # Exibe uma mensagem para o usuário
                 
     except Exception as erro_ultimo:
