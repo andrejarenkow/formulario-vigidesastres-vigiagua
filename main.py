@@ -176,7 +176,7 @@ with container_data_editor:
                 conn.update(worksheet='Tabela1', data=data_to_send)
                     
                 # Exibe uma mensagem de sucesso quando a atualização é enviada
-                st.success(f'Atualização enviada! {len(lista_atualizacoes)} linhas foram atualizadas.")!', icon="✅")
+                st.success(f'Atualização enviada! {len(mudancas)} linhas foram atualizadas.")!', icon="✅")
                 
                 st.dataframe(mudancas)
                 st.cache_data.clear()  # Limpa o cache de dados
