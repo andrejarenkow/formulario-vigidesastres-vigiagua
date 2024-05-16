@@ -202,7 +202,7 @@ with container_data_editor:
                 st.dataframe(mudancas.set_index('Nome da Forma de Abastecimento'), use_container_width=True)
                 st.markdown(f"""
                 <style>            
-                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(5) > div > div > div > div.st-emotion-cache-keje6w.e1f1d6gn3 > div > div > div > div:nth-child(7) > div > div
+                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(5) > div > div > div > div.st-emotion-cache-keje6w.e1f1d6gn3 > div > div > div > div:nth-child(7) > div > div > div:nth-child(2) > div.glideDataEditor.gdg-wmyidgi                
                 {{    
                     display: flex;
                     justify-content: center; /* Centraliza horizontalmente */
