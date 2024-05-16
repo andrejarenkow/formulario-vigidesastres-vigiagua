@@ -168,13 +168,13 @@ with container_data_editor:
                         if antes['Sem informação'][idx] == depois['Sem informação'][idx]:
                             if antes['Funcionando'][idx] == depois['Funcionando'][idx]:
                                 depois = 'Parada/danificada'
-                                antes = 'Sem informação' if antes[0]==True else 'Funcionando'     
+                                antes = 'Sem informação' if antes['Sem informação'][idx]==True else 'Funcionando'     
                             else:
                                 depois = 'Funcionando'
-                                antes = 'Sem informação' if antes[0]==True else 'Parada/danificada'    
+                                antes = 'Sem informação' if antes['Sem informação'][idx]==True else 'Parada/danificada'    
                         else:
                             depois = 'Sem informação'
-                            antes = 'Funcionando' if antes[1]==True else 'Parada/danificada'
+                            antes = 'Funcionando' if antes['Funcionando'][idx]==True else 'Parada/danificada'
                             
                         mudancas = pd.concat([mudancas,pd.DataFrame({'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
                                                                      'Município': data_to_send['Município'][idx],
