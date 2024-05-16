@@ -207,6 +207,7 @@ with container_data_editor:
                     display: flex;
                     justify-content: center; /* Centraliza horizontalmente */
                     align-items: center;
+                    text-align:center;
                 }}    
                 </style>
                 """, unsafe_allow_html=True)
