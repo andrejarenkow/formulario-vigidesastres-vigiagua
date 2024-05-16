@@ -157,19 +157,29 @@ with container_data_editor:
             if submit:
                 dados_antigos = dados.copy()
                 dados.reset_index(drop=True, inplace=True)
-                #dados_municipio.reset_index(drop=True, inplace=True)
                 dados.set_index('Código Forma de abastecimento', inplace=True)
-                #dados_municipio.set_index('Código Forma de abastecimento', inplace=True)
                 dados.update(edited_df.set_index('Código Forma de abastecimento'))
                 dados.reset_index(inplace=True)
                 data_to_send = dados.copy()
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
-                        mudancas = pd.concat([mudancas,pd.DataFrame({
-                                                                    'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
-                                                                    'Município': data_to_send['Município'][idx],
-                                                                    'Antes':dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]].to_dict(),
-                                                                    'Depois': data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]].to_dict()})], ignore_index=True)
+                        antes = dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
+                        depois = data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
+                        if antes['Sem informação'] == depois['Sem informação']:
+                            if antes['Funcionando'] == depois['Funcionando']:
+                                depois = 'Parada/danificada'
+                                antes = 'Sem informação' if antes['Sem informação']==True else 'Funcionando'     
+                            else:
+                                depois = 'Funcionando'
+                                antes = 'Sem informação' if antes['Sem informação']==True else 'Parada/danificada'    
+                        else:
+                            depois = 'Sem informação'
+                            antes = 'Funcionando' if antes['Funcionando']==True else 'Parada/danificada'
+                            
+                        mudancas = pd.concat([mudancas,pd.DataFrame({'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
+                                                                     'Município': data_to_send['Município'][idx],
+                                                                     'Antes':antes
+                                                                     'Depois': depois})], ignore_index=True)
                 #data_to_send = [dados.columns.tolist()] + dados.values.tolist()
                 # Atualizar a planilha
                 conn.update(worksheet='Tabela1', data=data_to_send)
@@ -177,7 +187,7 @@ with container_data_editor:
                 # Exibe uma mensagem de sucesso quando a atualização é enviada
                 st.success(f'Atualização enviada! {str(int(len(mudancas)/3))} linhas foram atualizadas.!', icon="✅")
                 mudancas = mudancas.set_index('Nome da Forma de Abastecimento')
-                st.dataframe(mudancas)
+                st.dataframe(mudancas, use_container_width=True)
                 st.cache_data.clear()  # Limpa o cache de dados
                 # Exibe uma mensagem para o usuário
                 
