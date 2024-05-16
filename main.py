@@ -203,9 +203,11 @@ with container_data_editor:
                 st.markdown(f"""
                 <style>            
                 #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(5) > div > div > div > div.st-emotion-cache-keje6w.e1f1d6gn3 > div > div > div > div:nth-child(7) > div > div
+                {{    
                     display: flex;
                     justify-content: center; /* Centraliza horizontalmente */
                     align-items: center;
+                }}    
                 </style>
                 """, unsafe_allow_html=True)
                 st.cache_data.clear()  # Limpa o cache de dados
