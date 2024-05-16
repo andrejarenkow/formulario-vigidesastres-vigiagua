@@ -161,7 +161,7 @@ with container_data_editor:
                 dados_municipio.reset_index(drop=True, inplace=True)
                 dados.set_index('Código Forma de abastecimento', inplace=True)
                 dados_municipio.set_index('Código Forma de abastecimento', inplace=True)
-                dados.update(dados_municipio)
+                dados.update(pd.DataFrame(edited_df))
                 dados.reset_index(inplace=True)
                 data_to_send = dados.copy()
                 for idx in data_to_send.index:
