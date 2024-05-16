@@ -172,8 +172,8 @@ with container_data_editor:
                                 mudanca = {
                                     'Nome da Forma de Abastecimento': [data_to_send.at[idx,'Nome da Forma de Abastecimento']],
                                     'Coluna': coluna,
-                                    'Valor Antigo': valor_antigo,
-                                    'Valor Novo': valor_novo
+                                    'Antes': valor_antigo,
+                                    'Depois': valor_novo
                                 }
                             
                                 mudancas = pd.concat([mudancas, pd.DataFrame([mudanca])], ignore_index=True)
