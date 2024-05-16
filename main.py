@@ -142,7 +142,7 @@ with container_data_editor:
             edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Sem informação', 'Funcionando', 'Parada/danificada']], use_container_width=True, hide_index=True)  # Exibe os dados do município para edição
             
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
-            submit = st.button('Enviar atualização!', type='primary', on_click=reset)
+            submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
             
             st.markdown(f'''
             <style>
@@ -181,6 +181,7 @@ with container_data_editor:
                 st.dataframe(mudancas)
                 st.cache_data.clear()  # Limpa o cache de dados
                 # Exibe uma mensagem para o usuário
+                reset
                 
     except Exception as erro_ultimo:
         # Se ocorrer uma exceção, exibe uma mensagem em branco
