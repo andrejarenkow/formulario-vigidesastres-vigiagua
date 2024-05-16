@@ -140,7 +140,6 @@ with container_data_editor:
         with colcenter5:
             st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)  # Exibe uma mensagem para o usuário
             edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Sem informação', 'Funcionando', 'Parada/danificada']], use_container_width=True, hide_index=True)  # Exibe os dados do município para edição
-            st.write(type(edited_df))
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
             
@@ -158,9 +157,9 @@ with container_data_editor:
             if submit:
                 dados_antigos = dados.copy()
                 dados.reset_index(drop=True, inplace=True)
-                dados_municipio.reset_index(drop=True, inplace=True)
+                #dados_municipio.reset_index(drop=True, inplace=True)
                 dados.set_index('Código Forma de abastecimento', inplace=True)
-                dados_municipio.set_index('Código Forma de abastecimento', inplace=True)
+                #dados_municipio.set_index('Código Forma de abastecimento', inplace=True)
                 dados.update(edited_df.set_index('Código Forma de abastecimento'))
                 dados.reset_index(inplace=True)
                 data_to_send = dados.copy()
