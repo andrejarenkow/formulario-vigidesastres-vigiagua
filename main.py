@@ -166,7 +166,7 @@ with container_data_editor:
                 data_to_send = dados.copy()
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
-                        mudancas = mudancas.append({
+                        mudancas = mudancas.concat({
                             'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
                             'Município': data_to_send['Município'][idx],
                             'Antes': dados_antigos.loc[idx].to_dict(),
