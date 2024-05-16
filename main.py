@@ -139,7 +139,7 @@ with container_data_editor:
         # st.subheader(f'{tipo_forma_abastecimento} no município de {municipio}')
         with colcenter5:
             st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)  # Exibe uma mensagem para o usuário
-            edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Sem informação', 'Funcionando', 'Parada/danificada']], use_container_width=True, hide_index=True)  # Exibe os dados do município para edição
+            edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Sem informação', 'Funcionando', 'Parada/danificada']].set_index('Código Forma de abastecimento'), use_container_width=True, hide_index=True)  # Exibe os dados do município para edição
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
             
@@ -167,8 +167,9 @@ with container_data_editor:
                         depois = data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
                         if antes['Sem informação'][idx] == depois['Sem informação'][idx]:
                             if antes['Funcionando'][idx] == depois['Funcionando'][idx]:
-                                depois = 'Parada/danificada'
-                                antes = 'Sem informação' if antes['Sem informação'][idx]==True else 'Funcionando'     
+                                if antes['Parada/danificada'][idx] != depois['Parada/danificada'][idx]:
+                                    depois = 'Parada/danificada'
+                                    antes = 'Sem informação' if antes['Sem informação'][idx]==True else 'Funcionando'     
                             else:
                                 depois = 'Funcionando'
                                 antes = 'Sem informação' if antes['Sem informação'][idx]==True else 'Parada/danificada'    
@@ -185,7 +186,7 @@ with container_data_editor:
                 conn.update(worksheet='Tabela1', data=data_to_send)
                     
                 # Exibe uma mensagem de sucesso quando a atualização é enviada
-                st.success(f'Atualização enviada! {str(int(len(mudancas)/3))} linhas foram atualizadas.!', icon="✅")
+                st.success(f'Atualização enviada! {len(mudancas)} linhas foram atualizadas!', icon="✅")
                 mudancas = mudancas.set_index('Nome da Forma de Abastecimento')
                 st.dataframe(mudancas, use_container_width=True)
                 st.cache_data.clear()  # Limpa o cache de dados
