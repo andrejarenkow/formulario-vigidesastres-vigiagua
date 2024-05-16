@@ -152,7 +152,8 @@ with container_data_editor:
             }}
             </style>
             ''', unsafe_allow_html=True)
-            mudancas = pd.DataFrame(columns=['Nome da Forma de Abastecimento', 'Município', 'Antes', 'Depois'])
+            mudancas = pd.DataFrame(columns=['Nome da Forma de Abastecimento', 'Coluna', 'Antes', 'Depois'])
+            colunas = ['Sem informação', 'Funcionando', 'Parada/danificada']
             # Verifica se o botão de envio foi clicado
             if submit:
                 dados_antigos = dados.copy()
@@ -163,30 +164,26 @@ with container_data_editor:
                 data_to_send = dados.copy()
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
-                        antes = dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
-                        depois = data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
-                        if antes['Sem informação'][idx] == depois['Sem informação'][idx]:
-                            if antes['Funcionando'][idx] == depois['Funcionando'][idx]:
-                                if antes['Parada/danificada'][idx] != depois['Parada/danificada'][idx]:
-                                    depois = 'Parada/danificada'
-                                    antes = 'Sem informação' if antes['Sem informação'][idx]==True else 'Funcionando'     
-                            else:
-                                depois = 'Funcionando'
-                                antes = 'Sem informação' if antes['Sem informação'][idx]==True else 'Parada/danificada'    
-                        else:
-                            depois = 'Sem informação'
-                            antes = 'Funcionando' if antes['Funcionando'][idx]==True else 'Parada/danificada'
+                        for coluna in colunas:
+                            valor_antigo = dados_antigos.at[idx, coluna]
+                            valor_novo = data_to_send.at[idx, coluna]
+                            if valor_antigo != valor_novo:
+                                # Armazenando detalhes da mudança
+                                mudanca = {
+                                    'Nome da Forma de Abastecimento': [data_to_send.at[idx,'Nome da Forma de Abastecimento']],
+                                    'Coluna': coluna,
+                                    'Valor Antigo': valor_antigo,
+                                    'Valor Novo': valor_novo
+                                }
                             
-                        mudancas = pd.concat([mudancas,pd.DataFrame({'Nome da Forma de Abastecimento': [data_to_send.at[idx,'Nome da Forma de Abastecimento']],
-                                                                     'Município': [data_to_send.at[idx,'Município']],
-                                                                     'Antes':[antes],
-                                                                     'Depois':[depois]})], ignore_index=True)
-                #data_to_send = [dados.columns.tolist()] + dados.values.tolist()
+                                mudancas = pd.concat([mudancas, pd.DataFrame([mudanca])], ignore_index=True)
+
+                mudancas_pivoted = mudancas.pivot_table(index='Nome da Forma de Abastecimento', columns='Coluna')
                 # Atualizar a planilha
                 conn.update(worksheet='Tabela1', data=data_to_send)
                     
                 # Exibe uma mensagem de sucesso quando a atualização é enviada
-                st.success(f'Atualização enviada! {len(mudancas)} linhas foram atualizadas!', icon="✅")
+                st.success(f'Atualização enviada! Foram realizadas {len(mudancas_pivoted)} atualizações!', icon="✅")
                 st.markdown(f"""
                 <style>
                 #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(5) > div > div > div > div.st-emotion-cache-keje6w.e1f1d6gn3 > div > div > div > div:nth-child(5) > div
@@ -202,8 +199,8 @@ with container_data_editor:
                 </style>
                 """, unsafe_allow_html=True)
                     
-                mudancas = mudancas.set_index('Nome da Forma de Abastecimento')
-                st.dataframe(mudancas, use_container_width=True)
+                #mudancas = mudancas.set_index('Nome da Forma de Abastecimento')
+                st.dataframe(mudancas_pivoted, use_container_width=True)
                 st.cache_data.clear()  # Limpa o cache de dados
                 # Exibe uma mensagem para o usuário
                 
