@@ -177,7 +177,7 @@ with container_data_editor:
                     
                 # Exibe uma mensagem de sucesso quando a atualização é enviada
                 st.success(f'Atualização enviada! {len(mudancas)} linhas foram atualizadas.!', icon="✅")
-                
+                mudancas = mudancas.set_index('Nome da Forma de Abastecimento')
                 st.dataframe(mudancas)
                 st.cache_data.clear()  # Limpa o cache de dados
                 # Exibe uma mensagem para o usuário
