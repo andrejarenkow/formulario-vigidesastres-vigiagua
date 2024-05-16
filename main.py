@@ -178,7 +178,6 @@ with container_data_editor:
                             
                                 mudancas = pd.concat([mudancas, pd.DataFrame([mudanca])], ignore_index=True)
 
-                mudancas_pivoted = mudancas.pivot_table(index='Nome da Forma de Abastecimento', columns='Coluna')
                 # Atualizar a planilha
                 conn.update(worksheet='Tabela1', data=data_to_send)
                     
@@ -200,7 +199,7 @@ with container_data_editor:
                 """, unsafe_allow_html=True)
                     
                 #mudancas = mudancas.set_index('Nome da Forma de Abastecimento')
-                st.dataframe(mudancas_pivoted, use_container_width=True)
+                st.dataframe(mudancas.set_index('Nome da Forma de Abastecimento'), use_container_width=True)
                 st.cache_data.clear()  # Limpa o cache de dados
                 # Exibe uma mensagem para o usuário
                 
