@@ -176,8 +176,8 @@ with container_data_editor:
                             depois = 'Sem informação'
                             antes = 'Funcionando' if antes['Funcionando'][idx]==True else 'Parada/danificada'
                             
-                        mudancas = pd.concat([mudancas,pd.DataFrame({'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
-                                                                     'Município': data_to_send['Município'][idx],
+                        mudancas = pd.concat([mudancas,pd.DataFrame({'Nome da Forma de Abastecimento': data_to_send.at[idx,'Nome da Forma de Abastecimento'],
+                                                                     'Município': data_to_send.at[idx,'Nome da Forma de Abastecimento'],
                                                                      'Antes':antes,
                                                                      'Depois':depois})], ignore_index=True)
                 #data_to_send = [dados.columns.tolist()] + dados.values.tolist()
