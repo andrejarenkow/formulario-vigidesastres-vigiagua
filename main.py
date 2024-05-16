@@ -163,15 +163,15 @@ with container_data_editor:
                 data_to_send = dados.copy()
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
-                        antes = dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[idx]
-                        depois = data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[idx]
-                        if antes['Sem informação'] == depois['Sem informação']:
-                            if antes['Funcionando'] == depois['Funcionando']:
+                        antes = dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
+                        depois = data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
+                        if antes['Sem informação'][0] == depois['Sem informação'][0]:
+                            if antes['Funcionando'][0] == depois['Funcionando'][0]:
                                 depois = 'Parada/danificada'
-                                antes = 'Sem informação' if antes['Sem informação']==True else 'Funcionando'     
+                                antes = 'Sem informação' if antes['Sem informação'][0]==True else 'Funcionando'     
                             else:
                                 depois = 'Funcionando'
-                                antes = 'Sem informação' if antes['Sem informação']==True else 'Parada/danificada'    
+                                antes = 'Sem informação' if antes['Sem informação'][0]==True else 'Parada/danificada'    
                         else:
                             depois = 'Sem informação'
                             antes = 'Funcionando' if antes['Funcionando']==True else 'Parada/danificada'
