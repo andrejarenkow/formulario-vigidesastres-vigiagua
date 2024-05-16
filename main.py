@@ -141,7 +141,7 @@ with container_data_editor:
             st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)  # Exibe uma mensagem para o usuário
             edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Sem informação', 'Funcionando', 'Parada/danificada']], use_container_width=True, hide_index=True)  # Exibe os dados do município para edição
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
-            submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
+            submit = st.button('Enviar atualização!', type='primary', on_click=reset)
             
             st.markdown(f'''
             <style>
@@ -168,7 +168,7 @@ with container_data_editor:
                         mudancas = pd.concat([mudancas,pd.DataFrame({
                                                                     'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
                                                                     'Município': data_to_send['Município'][idx],
-                                                                    'Antes': dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]].to_dict(),
+                                                                    'Antes':dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]].to_dict(),
                                                                     'Depois': data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]].to_dict()})], ignore_index=True)
                 #data_to_send = [dados.columns.tolist()] + dados.values.tolist()
                 # Atualizar a planilha
@@ -180,7 +180,6 @@ with container_data_editor:
                 st.dataframe(mudancas)
                 st.cache_data.clear()  # Limpa o cache de dados
                 # Exibe uma mensagem para o usuário
-                reset
                 
     except Exception as erro_ultimo:
         # Se ocorrer uma exceção, exibe uma mensagem em branco
