@@ -43,7 +43,7 @@ col1,colcenter2,col3 = st.columns(3)
 # Cria um seletor para escolher a Regional de Saúde
 with container_Sbox:
     with colcenter2:
-        crs = st.selectbox('COORDENADORIA REGIONAL DE SAÚDE', options=dados['Regional de Saúde'].unique(), index=None, placeholder='Selecione uma CRS', key='crs')
+        crs = st.selectbox('COORDENADORIA REGIONAL DE SAÚDE', options=sorted(dados['Regional de Saúde'].unique()), index=None, placeholder='Selecione uma CRS', key='crs')
         
         # Cria um seletor para escolher o município com base na Regional de Saúde selecionada
         municipio = st.selectbox('MUNICÍPIO', options=sorted(dados[dados['Regional de Saúde']==crs]['Município'].unique()), index=None, placeholder='Selecione uma município', key='municipio')
