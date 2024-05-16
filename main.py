@@ -164,10 +164,9 @@ with container_data_editor:
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
                         antes = dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
-                        st.write(antes)
                         depois = data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
-                        if antes[0] == depois[0]:
-                            if antes[1] == depois[1]:
+                        if antes['Sem informação'][idx] == depois['Sem informação'][idx]:
+                            if antes['Funcionando'][idx] == depois['Funcionando'][idx]:
                                 depois = 'Parada/danificada'
                                 antes = 'Sem informação' if antes[0]==True else 'Funcionando'     
                             else:
