@@ -166,11 +166,11 @@ with container_data_editor:
                 data_to_send = dados.copy()
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
-                        mudancas = mudancas.concat({
+                        mudancas = pd.concat([mudancas,pd.DataFrame({
                             'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
                             'Município': data_to_send['Município'][idx],
                             'Antes': dados_antigos.loc[idx].to_dict(),
-                            'Depois': data_to_send.loc[idx].to_dict()}, ignore_index=True)
+                            'Depois': data_to_send.loc[idx].to_dict()})], ignore_index=True)
                 #data_to_send = [dados.columns.tolist()] + dados.values.tolist()
                 # Atualizar a planilha
                 conn.update(worksheet='Tabela1', data=data_to_send)
