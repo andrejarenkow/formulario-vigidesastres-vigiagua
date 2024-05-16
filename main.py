@@ -158,7 +158,7 @@ with container_data_editor:
                 dados_antigos = dados.copy()
                 dados.reset_index(drop=True, inplace=True)
                 dados.set_index('Código Forma de abastecimento', inplace=True)
-                dados.update(edited_df.set_index('Código Forma de abastecimento'))
+                dados.update(edited_df)
                 dados.reset_index(inplace=True)
                 data_to_send = dados.copy()
                 for idx in data_to_send.index:
