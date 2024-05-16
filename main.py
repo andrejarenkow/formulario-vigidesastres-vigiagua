@@ -178,8 +178,8 @@ with container_data_editor:
                             
                         mudancas = pd.concat([mudancas,pd.DataFrame({'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
                                                                      'Município': data_to_send['Município'][idx],
-                                                                     'Antes':antes
-                                                                     'Depois': depois})], ignore_index=True)
+                                                                     'Antes':antes,
+                                                                     'Depois':depois})], ignore_index=True)
                 #data_to_send = [dados.columns.tolist()] + dados.values.tolist()
                 # Atualizar a planilha
                 conn.update(worksheet='Tabela1', data=data_to_send)
