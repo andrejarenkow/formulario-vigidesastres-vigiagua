@@ -165,16 +165,16 @@ with container_data_editor:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
                         antes = dados_antigos[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
                         depois = data_to_send[['Sem informação','Funcionando','Parada/danificada']].iloc[[idx]]
-                        if antes['Sem informação'][0] == depois['Sem informação'][0]:
-                            if antes['Funcionando'][0] == depois['Funcionando'][0]:
+                        if antes[0] == depois[0]:
+                            if antes[1] == depois[1]:
                                 depois = 'Parada/danificada'
-                                antes = 'Sem informação' if antes['Sem informação'][0]==True else 'Funcionando'     
+                                antes = 'Sem informação' if antes[0]==True else 'Funcionando'     
                             else:
                                 depois = 'Funcionando'
-                                antes = 'Sem informação' if antes['Sem informação'][0]==True else 'Parada/danificada'    
+                                antes = 'Sem informação' if antes[0]==True else 'Parada/danificada'    
                         else:
                             depois = 'Sem informação'
-                            antes = 'Funcionando' if antes['Funcionando']==True else 'Parada/danificada'
+                            antes = 'Funcionando' if antes[1]==True else 'Parada/danificada'
                             
                         mudancas = pd.concat([mudancas,pd.DataFrame({'Nome da Forma de Abastecimento': data_to_send['Nome da Forma de Abastecimento'][idx],
                                                                      'Município': data_to_send['Município'][idx],
