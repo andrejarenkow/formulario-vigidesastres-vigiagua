@@ -215,7 +215,7 @@ with container_data_editor:
                 st.success(f'Atualização enviada! Foram realizadas {len(mudancas)} atualizações!', icon="✅")
                 st.markdown(f"""
                 <style>
-                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+2))}) 
+                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+4))}) 
                 {{
                     display: flex;
                     justify-content: center; /* Centraliza horizontalmente */
@@ -224,7 +224,7 @@ with container_data_editor:
                 }}
                 </style>
                 <style>
-                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+2))}) > div > div > div > div
+                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+4))}) > div > div > div > div
                 {{text-align:center;}}
                 </style>
                 """, unsafe_allow_html=True)
