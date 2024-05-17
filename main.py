@@ -31,23 +31,7 @@ with container_titulo:
 conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 # Lê os dados de um arquivo Excel online
 dados = conn.read(worksheet='Tabela1', usecols=list(range(14)))
-options = ['Opção 1', 'Opção 2', 'Opção 3']
 
-# Criando um DataFrame com uma coluna vazia
-df = pd.DataFrame({
-    'Editable Column': [None]*10  # 10 linhas inicializadas com None
-})
-
-# Simulação de um editor de dados onde cada célula de 'Editable Column' pode ser editada via selectbox
-def edit_data(df):
-    for i in range(len(df)):
-        with st.container():
-            current_value = st.selectbox(f"Row {i+1}", options=options, index=options.index(df.at[i, 'Editable Column']) if df.at[i, 'Editable Column'] in options else 0)
-            df.at[i, 'Editable Column'] = current_value
-
-edit_data(df)
-
-st.dataframe(df)
 container_Sbox = st.container()
 col1,colcenter2,col3 = st.columns([2,1,2])
 # Cria um seletor para escolher a Regional de Saúde
@@ -230,6 +214,28 @@ with container_data_editor:
                 st.cache_data.clear()  # Limpa o cache de dados
                 # Exibe uma mensagem para o usuário
                 
+                
     except Exception as erro_ultimo:
         # Se ocorrer uma exceção, exibe uma mensagem em branco
         st.write(erro_ultimo)
+    opcoes_situacao = ['Sem informação', 'Funcionando', 'Parada/danificada']
+
+# Função para renderizar e atualizar as seleções
+def renderizar_editor(dados):
+    # Cria uma coluna para cada entrada
+    for i in range(len(dados)):
+        with st.container():
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                st.write(dados.iloc[i]['Nome da Forma de Abastecimento'])
+            with col2:
+                # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
+                situacao_atualizada = st.selectbox(f'Situação {i+1}',
+                                                   options=opcoes_situacao,
+                                                   index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
+                                                   key=f'situacao_{i}')
+                dados.at[i, 'Situação'] = situacao_atualizada
+
+    return dados
+
+dados_atualizados = renderizar_editor(dados_municipio)
