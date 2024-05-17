@@ -212,6 +212,6 @@ with container_data_editor:
                 st.cache_data.clear()  # Limpa o cache de dados
                 # Exibe uma mensagem para o usuário
                 
-    except Exceptio as erro_ultimo:
+    except Exception as erro_ultimo:
         # Se ocorrer uma exceção, exibe uma mensagem em branco
         st.write(erro_ultimo)
