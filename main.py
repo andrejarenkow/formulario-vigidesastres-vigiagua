@@ -32,12 +32,6 @@ conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 # Lê os dados de um arquivo Excel online
 dados = conn.read(worksheet='Tabela1', usecols=list(range(16)))
 
-#ws = conn.get_worksheet('Tabela1')
-
-#CODIGO_PLANILHA = '1V6v6pqt21cR3yHkkraQJMYdutJg2PAM1T8nKpRxd-VE'
-#gc = gspread.service_account(filename='key.json')
-#sh = gc.open_by_key(CODIGO_PLANILHA)
-#ws = sh.worksheet('Página1')
 container_Sbox = st.container()
 col1,colcenter2,col3 = st.columns([2,1,2])
 # Cria um seletor para escolher a Regional de Saúde
