@@ -151,7 +151,7 @@ with container_data_editor:
                                                            key=str(dados_x.iloc[i]['Nome da Forma de Abastecimento']))
                         
                         dados_x.at[i, 'Situação'] = situacao_atualizada
-                return dados_x, len(dados_x)
+                return dados_x, dados_x.shape[0]
             dados_atualizados, quantos_selectbox = renderizar_editor(dados_municipio)
             dados_atualizados.dropna(how='any', inplace=True)
             st.markdown(f"""
