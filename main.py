@@ -189,6 +189,7 @@ with container_data_editor:
                 dados.update(dados_atualizados)
                 dados.reset_index(inplace=True)
                 data_to_send = dados.copy()
+                st.table(data_to_send)
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
                         for coluna in colunas:
