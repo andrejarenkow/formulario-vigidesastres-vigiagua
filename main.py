@@ -183,6 +183,8 @@ with container_data_editor:
             
             # Verifica se o botão de envio foi clicado
             if submit:
+                for i in range(len(dados_atualizados)):
+                    dados_atualizados.at[i, 'Situação'] = st.session_state[f'situacao_{i}']   
                 dados_antigos = dados.copy()
                 dados.reset_index(drop=True, inplace=True)
                 dados.set_index('Código Forma de abastecimento', inplace=True)
