@@ -125,8 +125,10 @@ with container_Sbox:
         #dados_municipio = pd.concat([dados_municipio, pd.DataFrame({'Município':[municipio, municipio], 'Código Forma de abastecimento':['', ''], 
         #                                                           'Nome da Forma de Abastecimento':['IGNORAR','IGNORAR'], 'Situação':['Funcionando','Parada/danificada']})])
         dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
-st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)  # Exibe uma mensagem para o usuário
         
+st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)# Exibe uma mensagem para o usuário
+
+opcoes_situacao = ['Sem informação', 'Funcionando', 'Parada/danificada']      
 container_data_editor = st.container()
 with container_data_editor:
     col4,colcenter5,col6 = st.columns(3)
@@ -138,7 +140,7 @@ with container_data_editor:
             #edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Situação']].set_index('Código Forma de abastecimento'),
              #                          use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",default='Sem informação',options=['Sem informação','Funcionando','Parada/danificada'], width='medium'),
               #                                                                                   'category':st.column_config.Column(label='Nome',width='medium')})
-
+            
             def renderizar_editor(dados):
                 # Cria uma coluna para cada entrada
                 for i in range(len(dados)):
