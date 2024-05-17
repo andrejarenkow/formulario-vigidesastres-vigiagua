@@ -25,8 +25,8 @@ with container_titulo:
     coluna_inicial1,coluna_inicial2,coluna_inicial3 = st.columns([1,8,1])
 
     with coluna_inicial2:
-        st.markdown(f'<h1 style="text-align: center;color:#0000ff;font-size:42px;">{"FORMULÁRIO VIGIAGUA - VIGIDESASTRES"}</h1>', unsafe_allow_html=True)    
-        st.markdown(f'<h1 style="text-align: center;color:#0000ff;font-size:24px;">{"CRS/CEVS/Secretaria de Saúde do Estado do Rio Grande do Sul"}</h1>', unsafe_allow_html=True)
+        st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:42px;">{"FORMULÁRIO VIGIAGUA - VIGIDESASTRES"}</h1>', unsafe_allow_html=True)    
+        st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:24px;">{"CRS/CEVS/Secretaria de Saúde do Estado do Rio Grande do Sul"}</h1>', unsafe_allow_html=True)
 
 conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 # Lê os dados de um arquivo Excel online
@@ -89,7 +89,6 @@ with container_Sbox:
             </style>
             <style>
             #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div.st-emotion-cache-ocqkz7.e1f1d6gn5 > div:nth-child(2) > div > div > div > div:nth-child(3) > div > div {{
-                background-color: #FFFFFF; /* Verde bem clarinho */
                 border: 1px solid white; /* Borda verde */
                 border-radius: 10px;
                 padding: 0px;
@@ -138,7 +137,7 @@ with container_data_editor:
         # Comentários abaixo são comentários de código, não estão habilitados no momento devido ao formato da entrada.
         # st.subheader(f'{tipo_forma_abastecimento} no município de {municipio}')
         with colcenter5:
-            st.markdown(f'<h1 style="text-align: center;color:#0000ff;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)  # Exibe uma mensagem para o usuário
+            st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)  # Exibe uma mensagem para o usuário
             edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Sem informação', 'Funcionando', 'Parada/danificada']].set_index('Código Forma de abastecimento'), width=400, hide_index=True)  # Exibe os dados do município para edição
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
