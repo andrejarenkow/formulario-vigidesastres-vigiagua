@@ -169,8 +169,11 @@ with container_data_editor:
                         #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div > label
                         {{
                             text-align: center;
+                            display: flex;
+                            justify-content: center; /* Centraliza horizontalmente */
+                            align-items: center;
+                            
                         }}
-                        </style>
                             """, unsafe_allow_html=True)
                                                                                                                                                                                                                                                                                                                                                                                       
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
