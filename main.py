@@ -244,10 +244,10 @@ with container_data_editor:
                 """, unsafe_allow_html=True)
                 st.cache_data.clear()  # Limpa o cache de dados
                                 
-    except Exception as erro_ultimo:
+    except:
         # Se ocorrer uma exceção, exibe uma mensagem em branco
-        st.write(erro_ultimo)
-    opcoes_situacao = ['Sem informação', 'Funcionando', 'Parada/danificada']
+        st.write('')
+   
 
 # Função para renderizar e atualizar as seleções
 
