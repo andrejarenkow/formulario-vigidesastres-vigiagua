@@ -153,6 +153,7 @@ with container_data_editor:
                 return dados
                 
             dados_atualizados = renderizar_editor(dados_municipio)
+            st.dataframe(dados_atualizados)
             st.markdown(f"""
                         <style>
                         #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div  
