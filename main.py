@@ -132,7 +132,7 @@ with container_Sbox:
         
 container_data_editor = st.container()
 with container_data_editor:
-    col4,colcenter5,col6 = st.columns([1,2,1])
+    col4,colcenter5,col6 = st.columns([1,3,1])
     try:
         # Tenta executar as seguintes instruções
         # Comentários abaixo são comentários de código, não estão habilitados no momento devido ao formato da entrada.
