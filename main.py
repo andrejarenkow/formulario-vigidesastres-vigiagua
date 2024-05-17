@@ -224,12 +224,14 @@ with container_data_editor:
 def renderizar_editor(dados):
     # Cria uma coluna para cada entrada
     for i in range(len(dados)):
+        col1,colcentered,col2 = st.columns([2,1,2])
         with st.container():
+            with colcentered:
                 # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
-            situacao_atualizada = st.selectbox(dados.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
-                                                index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
-                                                key=f'situacao_{i}')
-            dados.at[i, 'Situação'] = situacao_atualizada
+                situacao_atualizada = st.selectbox(dados.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
+                                                    index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
+                                                    key=f'situacao_{i}')
+                dados.at[i, 'Situação'] = situacao_atualizada
 
     return dados
 
