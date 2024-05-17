@@ -63,7 +63,6 @@ with container_Sbox:
             f"""
             <style>
             #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div.st-emotion-cache-ocqkz7.e1f1d6gn5 > div:nth-child(2) > div > div > div > div:nth-child(1) > div > div {{
-                background-color: #FFFFFF; /* Verde bem clarinho */
                 border: 1px solid white; /* Borda verde */
                 border-radius: 10px;
                 padding: 0px;
@@ -73,8 +72,7 @@ with container_Sbox:
             </style>
             <style>
             #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div.st-emotion-cache-ocqkz7.e1f1d6gn5 > div:nth-child(2) > div > div > div > div:nth-child(2) > div > div {{
-                background-color: #FFFFFF; /* Verde bem clarinho */
-                border: 1px solid white; /* Borda verde */
+                border: 1px solid white;
                 border-radius: 10px;
                 padding: 0px;
                 max-width: calc(100% - 25px);
@@ -153,7 +151,15 @@ with container_data_editor:
                 return dados
             
             dados_atualizados = renderizar_editor(dados_municipio)
-                                                                                                                                                                                                                                                                                                                                                                                      
+            st.markdown(f"""
+            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(6) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3
+            {{
+            box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.25);
+            border: 2px solid white;
+            border-radius: 15px;
+            padding: 15px;
+            }}
+            """, unsafe_allow_html=True)                                                                                                                                                                                                                                                                                                                                                                          
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
             
