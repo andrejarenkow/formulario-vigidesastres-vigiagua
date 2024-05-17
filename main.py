@@ -148,13 +148,14 @@ with container_data_editor:
                         # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
                         situacao_atualizada = st.selectbox(dados_x.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
                                                            index=opcoes_situacao.index(dados_x.iloc[i]['Situação']) if dados_x.iloc[i]['Situação'] in opcoes_situacao else 0,
-                                                           key=str(dados_x.iloc[i]['Nome da Forma de Abastecimento']))
+                                                           key=f'situacao_{i}')
                         
                         dados_x.at[i, 'Situação'] = situacao_atualizada
                 return dados_x
             dados_atualizados = renderizar_editor(dados_municipio)
             dados_atualizados.dropna(how='any', inplace=True)
             quantos_selectbox = len(dados_atualizados)
+            st.write(dados_atualizados.situacao_1)
             st.markdown(f"""
                         <style>
                         #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div  
