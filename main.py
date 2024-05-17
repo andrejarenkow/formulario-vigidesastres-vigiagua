@@ -225,16 +225,11 @@ def renderizar_editor(dados):
     # Cria uma coluna para cada entrada
     for i in range(len(dados)):
         with st.container():
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                st.write(dados.iloc[i]['Nome da Forma de Abastecimento'])
-            with col2:
                 # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
-                situacao_atualizada = st.selectbox(f'Situação {i+1}',
-                                                   options=opcoes_situacao,
-                                                   index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
-                                                   key=f'situacao_{i}')
-                dados.at[i, 'Situação'] = situacao_atualizada
+            situacao_atualizada = st.selectbox(dados.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
+                                                index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
+                                                key=f'situacao_{i}')
+            dados.at[i, 'Situação'] = situacao_atualizada
 
     return dados
 
