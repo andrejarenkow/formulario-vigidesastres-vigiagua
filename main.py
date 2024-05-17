@@ -140,6 +140,7 @@ with container_data_editor:
              #                          use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",default='Sem informação',options=['Sem informação','Funcionando','Parada/danificada'], width='medium'),
               #                                                                                   'category':st.column_config.Column(label='Nome',width='medium')})
             
+            i=0
             def renderizar_editor(dados_x):
                 # Cria uma coluna para cada entrada
                 for i in range(len(dados_x)):
