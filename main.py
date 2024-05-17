@@ -140,18 +140,17 @@ with container_data_editor:
              #                          use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",default='Sem informação',options=['Sem informação','Funcionando','Parada/danificada'], width='medium'),
               #                                                                                   'category':st.column_config.Column(label='Nome',width='medium')})
             
-            def renderizar_editor(dados):
+            def renderizar_editor(dados_x):
                 # Cria uma coluna para cada entrada
-                for i in range(len(dados)):
+                for i in range(len(dados_x)):
                     with st.container():
                         # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
-                        situacao_atualizada = st.selectbox(dados.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
-                                                           index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
+                        situacao_atualizada = st.selectbox(dados_x.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
+                                                           index=opcoes_situacao.index(dados_x.iloc[i]['Situação']) if dados_x.iloc[i]['Situação'] in opcoes_situacao else 0,
                                                            key=f'situacao_{i}')
                         
-                        dados.at[i, 'Situação'] = situacao_atualizada
-                return dados
-                
+                        dados_x.at[i, 'Situação'] = situacao_atualizada
+                return dados_x
             dados_atualizados = renderizar_editor(dados_municipio)
             st.dataframe(dados_atualizados)
             st.markdown(f"""
