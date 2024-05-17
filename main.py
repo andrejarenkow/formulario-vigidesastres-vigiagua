@@ -27,7 +27,7 @@ with container_titulo:
     with coluna_inicial2:
         st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:42px;">{"FORMULÁRIO VIGIAGUA - VIGIDESASTRES"}</h1>', unsafe_allow_html=True)    
         st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:24px;">{"CRS/CEVS/Secretaria de Saúde do Estado do Rio Grande do Sul"}</h1>', unsafe_allow_html=True)
-
+st.write('<hr style="border: 0; height: 4px; background-color: white; margin: 0 auto;">', unsafe_allow_html=True)
 conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 # Lê os dados de um arquivo Excel online
 dados = conn.read(worksheet='Tabela1', usecols=list(range(14)))
