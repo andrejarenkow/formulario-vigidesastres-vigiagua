@@ -140,7 +140,7 @@ with container_data_editor:
              #                          use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",default='Sem informação',options=['Sem informação','Funcionando','Parada/danificada'], width='medium'),
               #                                                                                   'category':st.column_config.Column(label='Nome',width='medium')})
             
-            i=0
+            quantos_selectbox=0
             def renderizar_editor(dados_x):
                 # Cria uma coluna para cada entrada
                 for i in range(len(dados_x)):
@@ -151,7 +151,7 @@ with container_data_editor:
                                                            key=str(dados_x.iloc[i]['Nome da Forma de Abastecimento']))
                         
                         dados_x.at[i, 'Situação'] = situacao_atualizada
-                return dados_x,i
+                return dados_x, i
             dados_atualizados, quantos_selectbox = renderizar_editor(dados_municipio)
             dados_atualizados.dropna(how='any', inplace=True)
             st.markdown(f"""
