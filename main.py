@@ -147,7 +147,7 @@ with container_data_editor:
                         # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
                         situacao_atualizada = st.selectbox(dados_x.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
                                                            index=opcoes_situacao.index(dados_x.iloc[i]['Situação']) if dados_x.iloc[i]['Situação'] in opcoes_situacao else 0,
-                                                           key=f'situacao_{i}')
+                                                           key=str(dados_x.iloc[i]['Nome da Forma de Abastecimento']))
                         
                         dados_x.at[i, 'Situação'] = situacao_atualizada
                 return dados_x
@@ -170,7 +170,7 @@ with container_data_editor:
             
             st.markdown(f'''
             <style>
-            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child(4) > div           
+            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child(3) > div           
             {{
                 display: flex;
                 justify-content: center; /* Centraliza horizontalmente */
