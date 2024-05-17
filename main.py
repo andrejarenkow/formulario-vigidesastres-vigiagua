@@ -125,7 +125,7 @@ with container_Sbox:
         dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
         dados_municipio = pd.concat([dados_municipio, pd.DataFrame({'Município':[municipio, municipio], 'Código Forma de abastecimento':['', ''], 
                                                                    'Nome da Forma de Abastecimento':['IGNORAR','IGNORAR'], 'Situação':['Funcionando','Parada/danificada']})])
-        
+        dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
 st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)  # Exibe uma mensagem para o usuário
         
 container_data_editor = st.container()
