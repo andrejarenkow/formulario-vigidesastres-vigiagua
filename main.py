@@ -127,7 +127,7 @@ st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Mar
         
 container_data_editor = st.container()
 with container_data_editor:
-    col4,colcenter5,col6 = st.columns([2,1,2])
+    col4,colcenter5,col6 = st.columns([1.5,1,1.5])
     try:
         # Tenta executar as seguintes instruções
         # Comentários abaixo são comentários de código, não estão habilitados no momento devido ao formato da entrada.
