@@ -165,6 +165,8 @@ with container_data_editor:
                             }}
                         </style>
                             """, unsafe_allow_html=True)
+
+            st.write(str(quantos_selectbox))
                                                                                                                                                                                                                                                                                                                                                                                       
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
