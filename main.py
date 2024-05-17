@@ -169,7 +169,7 @@ with container_data_editor:
             
             st.markdown(f'''
             <style>
-            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(6) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child(2) > div            
+            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div            
             {{
                 display: flex;
                 justify-content: center; /* Centraliza horizontalmente */
@@ -238,9 +238,7 @@ with container_data_editor:
                 </style>
                 """, unsafe_allow_html=True)
                 st.cache_data.clear()  # Limpa o cache de dados
-                # Exibe uma mensagem para o usuário
-                
-                
+                                
     except Exception as erro_ultimo:
         # Se ocorrer uma exceção, exibe uma mensagem em branco
         st.write(erro_ultimo)
