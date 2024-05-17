@@ -149,7 +149,7 @@ with container_data_editor:
                         situacao_atualizada = st.selectbox(dados_x.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
                                                            index=opcoes_situacao.index(dados_x.iloc[i]['Situação']) if dados_x.iloc[i]['Situação'] in opcoes_situacao else 0,
                                                            key=f'situacao_{i}')
-                        dados_x.at['Código da Forma de Abastecimento', 'Situação'] = situacao_atualizada
+                        dados_x.at['Código Forma de abastecimento', 'Situação'] = situacao_atualizada
                 return dados_x
             dados_atualizados = renderizar_editor(dados_municipio)
             dados_atualizados.dropna(how='any', inplace=True)
@@ -183,8 +183,8 @@ with container_data_editor:
             
             # Verifica se o botão de envio foi clicado
             if submit:
-                #for i in range(len(dados_atualizados)):
-                #    dados_atualizados.at[i, 'Situação'] = st.session_state[f'situacao_{i}']
+                for i in range(len(dados_atualizados)):
+                    dados_atualizados.at['Código Forma de abastecimento', 'Situação'] = st.session_state[f'situacao_{i}']
                 
                 dados_antigos = dados.copy()
                 dados.reset_index(drop=True, inplace=True)
@@ -197,8 +197,8 @@ with container_data_editor:
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
                         for coluna in colunas:
-                            valor_antigo = dados_antigos.at[idx, coluna]
-                            valor_novo = data_to_send.at[idx, coluna]
+                            valor_antigo = dados_antigos.at[idx, 'Situação']
+                            valor_novo = data_to_send.at[idx, 'Situação']
                             if valor_antigo != valor_novo:
                                 # Armazenando detalhes da mudança
                                 mudanca = {
