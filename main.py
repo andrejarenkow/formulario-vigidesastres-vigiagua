@@ -122,8 +122,8 @@ with container_Sbox:
 
         # Filtra os dados para exibir apenas as informações relevantes com base no município e tipo da forma de abastecimento selecionados
         dados_municipio = dados[(dados['Município']==municipio)&(dados['Tipo da Forma de Abastecimento']==tipo_forma_abastecimento)][['Município','Código Forma de abastecimento','Nome da Forma de Abastecimento', 'Situação']]
-        dados_municipio = pd.concat([dados_municipio, pd.DataFrame({'Município':[municipio, municipio], 'Código Forma de abastecimento':['', ''], 
-                                                                   'Nome da Forma de Abastecimento':['IGNORAR','IGNORAR'], 'Situação':['Funcionando','Parada/danificada']})])
+        #dados_municipio = pd.concat([dados_municipio, pd.DataFrame({'Município':[municipio, municipio], 'Código Forma de abastecimento':['', ''], 
+        #                                                           'Nome da Forma de Abastecimento':['IGNORAR','IGNORAR'], 'Situação':['Funcionando','Parada/danificada']})])
         dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
 st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)  # Exibe uma mensagem para o usuário
         
@@ -135,9 +135,25 @@ with container_data_editor:
         # Comentários abaixo são comentários de código, não estão habilitados no momento devido ao formato da entrada.
         # st.subheader(f'{tipo_forma_abastecimento} no município de {municipio}')
         with colcenter5:
-            edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Situação']].set_index('Código Forma de abastecimento'),
-                                       use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",default='Sem informação',options=['Sem informação','Funcionando','Parada/danificada'], width='medium'),
-                                                                                                 'category':st.column_config.Column(label='Nome',width='medium')})
+            #edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Situação']].set_index('Código Forma de abastecimento'),
+             #                          use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",default='Sem informação',options=['Sem informação','Funcionando','Parada/danificada'], width='medium'),
+              #                                                                                   'category':st.column_config.Column(label='Nome',width='medium')})
+
+            def renderizar_editor(dados):
+                # Cria uma coluna para cada entrada
+                for i in range(len(dados)):
+                    col1,colcentered,col2 = st.columns([2,1,2])
+                    with st.container():
+                        with colcentered:
+                            # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
+                            situacao_atualizada = st.selectbox(dados.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
+                                                                index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
+                                                                key=f'situacao_{i}')
+                            dados.at[i, 'Situação'] = situacao_atualizada
+            
+                return dados
+            
+            dados_atualizados = renderizar_editor(dados_municipio)
                                                                                                                                                                                                                                                                                                                                                                                       
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
@@ -159,7 +175,8 @@ with container_data_editor:
                 dados_antigos = dados.copy()
                 dados.reset_index(drop=True, inplace=True)
                 dados.set_index('Código Forma de abastecimento', inplace=True)
-                dados.update(edited_df)
+                dados_atualizados.set_index('Código Forma de abastecimento', inplace=True)
+                dados.update(dados_atualizados)
                 dados.reset_index(inplace=True)
                 data_to_send = dados.copy()
                 for idx in data_to_send.index:
@@ -221,18 +238,4 @@ with container_data_editor:
     opcoes_situacao = ['Sem informação', 'Funcionando', 'Parada/danificada']
 
 # Função para renderizar e atualizar as seleções
-def renderizar_editor(dados):
-    # Cria uma coluna para cada entrada
-    for i in range(len(dados)):
-        col1,colcentered,col2 = st.columns([2,1,2])
-        with st.container():
-            with colcentered:
-                # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
-                situacao_atualizada = st.selectbox(dados.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
-                                                    index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
-                                                    key=f'situacao_{i}')
-                dados.at[i, 'Situação'] = situacao_atualizada
 
-    return dados
-
-dados_atualizados = renderizar_editor(dados_municipio)
