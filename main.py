@@ -136,7 +136,7 @@ with container_data_editor:
         # Tenta executar as seguintes instruções
         # Comentários abaixo são comentários de código, não estão habilitados no momento devido ao formato da entrada.
         # st.subheader(f'{tipo_forma_abastecimento} no município de {municipio}')
-        with colcenter5:
+        with colcenter2:
             #edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Situação']].set_index('Código Forma de abastecimento'),
              #                          use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",default='Sem informação',options=['Sem informação','Funcionando','Parada/danificada'], width='medium'),
               #                                                                                   'category':st.column_config.Column(label='Nome',width='medium')})
