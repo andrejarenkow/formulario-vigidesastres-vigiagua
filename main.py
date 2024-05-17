@@ -127,14 +127,14 @@ st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Mar
         
 container_data_editor = st.container()
 with container_data_editor:
-    col4,colcenter5,col6 = st.columns([1.5,1,1.5])
+    col4,colcenter5,col6 = st.columns([0.5,1,0.5])
     try:
         # Tenta executar as seguintes instruções
         # Comentários abaixo são comentários de código, não estão habilitados no momento devido ao formato da entrada.
         # st.subheader(f'{tipo_forma_abastecimento} no município de {municipio}')
         with colcenter5:
             edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Situação']].set_index('Código Forma de abastecimento'),
-                                       use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",options=['Sem informação','Funcionando','Parada/danificada'])})
+                                       use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",options=['Sem informação','Funcionando','Parada/danificada']), 'Nome da Forma de Abastecimneto':'Nome'})
                                                                                      
                                                                                                                                                                                                                                                                                                                 
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
