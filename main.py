@@ -31,7 +31,23 @@ with container_titulo:
 conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 # Lê os dados de um arquivo Excel online
 dados = conn.read(worksheet='Tabela1', usecols=list(range(14)))
+options = ['Opção 1', 'Opção 2', 'Opção 3']
 
+# Criando um DataFrame com uma coluna vazia
+df = pd.DataFrame({
+    'Editable Column': [None]*10  # 10 linhas inicializadas com None
+})
+
+# Simulação de um editor de dados onde cada célula de 'Editable Column' pode ser editada via selectbox
+def edit_data(df):
+    for i in range(len(df)):
+        with st.container():
+            current_value = st.selectbox(f"Row {i+1}", options=options, index=options.index(df.at[i, 'Editable Column']) if df.at[i, 'Editable Column'] in options else 0)
+            df.at[i, 'Editable Column'] = current_value
+
+edit_data(df)
+
+st.dataframe(df)
 container_Sbox = st.container()
 col1,colcenter2,col3 = st.columns([2,1,2])
 # Cria um seletor para escolher a Regional de Saúde
@@ -122,7 +138,6 @@ with container_Sbox:
 
         # Filtra os dados para exibir apenas as informações relevantes com base no município e tipo da forma de abastecimento selecionados
         dados_municipio = dados[(dados['Município']==municipio)&(dados['Tipo da Forma de Abastecimento']==tipo_forma_abastecimento)][['Município','Código Forma de abastecimento','Nome da Forma de Abastecimento', 'Situação']]
-        dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
         dados_municipio = pd.concat([dados_municipio, pd.DataFrame({'Município':[municipio, municipio], 'Código Forma de abastecimento':['', ''], 
                                                                    'Nome da Forma de Abastecimento':['IGNORAR','IGNORAR'], 'Situação':['Funcionando','Parada/danificada']})])
         dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
