@@ -152,7 +152,7 @@ with container_data_editor:
             
             dados_atualizados = renderizar_editor(dados_municipio)
             st.markdown(f"""
-            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(6) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3
+            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(6) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div
             {{
             box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.25);
             border: 2px solid white;
