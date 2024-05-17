@@ -149,13 +149,11 @@ with container_data_editor:
                         situacao_atualizada = st.selectbox(dados_x.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
                                                            index=opcoes_situacao.index(dados_x.iloc[i]['Situação']) if dados_x.iloc[i]['Situação'] in opcoes_situacao else 0,
                                                            key=f'situacao_{i}')
-                        
                         dados_x.at[i, 'Situação'] = situacao_atualizada
                 return dados_x
             dados_atualizados = renderizar_editor(dados_municipio)
             dados_atualizados.dropna(how='any', inplace=True)
             quantos_selectbox = len(dados_atualizados)
-            st.write(dados_atualizados.situacao_1)
             st.markdown(f"""
                         <style>
                         #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div  
@@ -170,7 +168,6 @@ with container_data_editor:
                                                                                                                                                                                                                                                                                                                                                                                       
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
-            
             st.markdown(f'''
             <style>
             #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(2+quantos_selectbox)}) > div           
@@ -183,6 +180,7 @@ with container_data_editor:
             ''', unsafe_allow_html=True)
             mudancas = pd.DataFrame(columns=['Nome da Forma de Abastecimento', 'Coluna', 'Antes', 'Depois'])
             colunas = ['Sem informação', 'Funcionando', 'Parada/danificada']
+            
             # Verifica se o botão de envio foi clicado
             if submit:
                 dados_antigos = dados.copy()
@@ -192,7 +190,7 @@ with container_data_editor:
                 dados.update(dados_atualizados)
                 dados.reset_index(inplace=True)
                 data_to_send = dados.copy()
-                st.table(data_to_send)
+                st.table(dados_atualizados)
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
                         for coluna in colunas:
@@ -202,7 +200,7 @@ with container_data_editor:
                                 # Armazenando detalhes da mudança
                                 mudanca = {
                                     'Nome da Forma de Abastecimento': [data_to_send.at[idx,'Nome da Forma de Abastecimento']],
-                                    'Coluna': coluna,
+                                    'Coluna': 'Situação',
                                     'Antes': valor_antigo,
                                     'Depois': valor_novo
                                 }
