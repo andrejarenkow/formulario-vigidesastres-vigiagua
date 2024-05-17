@@ -151,9 +151,10 @@ with container_data_editor:
                                                            key=str(dados_x.iloc[i]['Nome da Forma de Abastecimento']))
                         
                         dados_x.at[i, 'Situação'] = situacao_atualizada
-                return dados_x, dados_x.shape[0]
-            dados_atualizados, quantos_selectbox = renderizar_editor(dados_municipio)
+                return dados_x
+            dados_atualizados = renderizar_editor(dados_municipio)
             dados_atualizados.dropna(how='any', inplace=True)
+            quantos_selectbox = len(quantos_selectbox)
             st.markdown(f"""
                         <style>
                         #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div  
@@ -165,15 +166,13 @@ with container_data_editor:
                             }}
                         </style>
                             """, unsafe_allow_html=True)
-
-            st.write(str(quantos_selectbox))
                                                                                                                                                                                                                                                                                                                                                                                       
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
             
             st.markdown(f'''
             <style>
-            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(4+quantos_selectbox)}) > div           
+            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(2+quantos_selectbox)}) > div           
             {{
                 display: flex;
                 justify-content: center; /* Centraliza horizontalmente */
