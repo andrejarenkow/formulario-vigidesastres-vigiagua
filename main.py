@@ -134,7 +134,7 @@ with container_data_editor:
         # st.subheader(f'{tipo_forma_abastecimento} no município de {municipio}')
         with colcenter5:
             edited_df = st.data_editor(dados_municipio[['Nome da Forma de Abastecimento','Código Forma de abastecimento','Situação']].set_index('Código Forma de abastecimento'),
-                                       use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",options=['Sem informação','Funcionando','Parada/danificada'])})
+                                       use_container_width=True, hide_index=True, column_config={"category":st.column_config.SelectboxColumn("Situação",options=['Sem informação','Funcionando','Parada/danificada']),"Nome da Forma de Abastecimento":"Nome"})
                                                                                      
                                                                                                                                                                                                                                                                                                                 
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
