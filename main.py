@@ -124,7 +124,7 @@ with container_Sbox:
         dados_municipio = dados[(dados['Município']==municipio)&(dados['Tipo da Forma de Abastecimento']==tipo_forma_abastecimento)][['Município','Código Forma de abastecimento','Nome da Forma de Abastecimento', 'Situação']]
         #dados_municipio = pd.concat([dados_municipio, pd.DataFrame({'Município':[municipio, municipio], 'Código Forma de abastecimento':['', ''], 
         #                                                           'Nome da Forma de Abastecimento':['IGNORAR','IGNORAR'], 'Situação':['Funcionando','Parada/danificada']})])
-        dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
+        #dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
         
 st.markdown(f'<h1 style="text-align: center;color:#FFFFFF;font-size:16px;">{"Marque o status de cada uma para informar seu status"}</h1>', unsafe_allow_html=True)# Exibe uma mensagem para o usuário
 
@@ -144,15 +144,12 @@ with container_data_editor:
             def renderizar_editor(dados):
                 # Cria uma coluna para cada entrada
                 for i in range(len(dados)):
-                    col1,colcentered,col2 = st.columns([2,1,2])
                     with st.container():
-                        with colcentered:
-                            # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
-                            situacao_atualizada = st.selectbox(dados.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
-                                                                index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
-                                                                key=f'situacao_{i}')
-                            dados.at[i, 'Situação'] = situacao_atualizada
-            
+                        # Usando uma selectbox para cada linha e atualizando o valor no DataFrame
+                        situacao_atualizada = st.selectbox(dados.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
+                                                           index=opcoes_situacao.index(dados.iloc[i]['Situação']) if dados.iloc[i]['Situação'] in opcoes_situacao else 0,
+                                                           key=f'situacao_{i}')
+                        dados.at[i, 'Situação'] = situacao_atualizada
                 return dados
             
             dados_atualizados = renderizar_editor(dados_municipio)
