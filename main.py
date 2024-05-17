@@ -49,7 +49,7 @@ with container_Sbox:
             f"""
             <style>
             #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div.st-emotion-cache-ocqkz7.e1f1d6gn5 > div:nth-child(2) {{
-                box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+                box-shadow: 0px 0px 5px 10px rgba(225, 225, 225, 0.3);
                 border: 2px solid white;
                 border-radius: 15px;
                 padding: 15px;
