@@ -179,7 +179,7 @@ with container_data_editor:
             }}
             </style>
             ''', unsafe_allow_html=True)
-            mudancas = pd.DataFrame(columns=['Nome da Forma de Abastecimento', 'Coluna', 'Antes', 'Depois'])
+            mudancas = pd.DataFrame(columns=['Nome da Forma de Abastecimento', 'Antes', 'Depois'])
             colunas = ['Sem informação', 'Funcionando', 'Parada/danificada']
             
             # Verifica se o botão de envio foi clicado
@@ -195,21 +195,18 @@ with container_data_editor:
                 dados.update(dados_atualizados)
                 dados.reset_index(inplace=True)
                 data_to_send = dados.copy()
-                st.table(dados_atualizados)
                 for idx in data_to_send.index:
                     if idx in dados_antigos.index and not dados_antigos.loc[idx].equals(data_to_send.loc[idx]):
-                        for coluna in colunas:
-                            valor_antigo = dados_antigos.at[idx, 'Situação']
-                            valor_novo = data_to_send.at[idx, 'Situação']
-                            if valor_antigo != valor_novo:
-                                # Armazenando detalhes da mudança
-                                mudanca = {
-                                    'Nome da Forma de Abastecimento': [data_to_send.at[idx,'Nome da Forma de Abastecimento']],
-                                    'Coluna': 'Situação',
-                                    'Antes': valor_antigo,
-                                    'Depois': valor_novo
+                        valor_antigo = dados_antigos.at[idx, 'Situação']
+                        valor_novo = data_to_send.at[idx, 'Situação']
+                        if valor_antigo != valor_novo:
+                            # Armazenando detalhes da mudança
+                            mudanca = {
+                                'Nome da Forma de Abastecimento': [data_to_send.at[idx,'Nome da Forma de Abastecimento']],
+                                'Antes': valor_antigo,
+                                'Depois': valor_novo
                                 }
-                                mudancas = pd.concat([mudancas, pd.DataFrame([mudanca])], ignore_index=True)
+                            mudancas = pd.concat([mudancas, pd.DataFrame([mudanca])], ignore_index=True)
 
                 # Atualizar a planilha
                 conn.update(worksheet='Tabela1', data=data_to_send)
