@@ -145,7 +145,7 @@ with container_data_editor:
             
             st.markdown(f'''
             <style>
-            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(5) > div > div > div > div.st-emotion-cache-fplge5.e1f1d6gn3 > div > div > div > div:nth-child(3) > div            
+            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(5) > div > div > div > div.st-emotion-cache-fplge5.e1f1d6gn3 > div > div > div > div:nth-child(2) > div > div > div:nth-child(2) > div.glideDataEditor.gdg-wmyidgi > div > div > div.dvn-underlay > canvas:nth-child(2)            
             {{
                 display: flex;
                 justify-content: center; /* Centraliza horizontalmente */
