@@ -153,7 +153,17 @@ with container_data_editor:
                 return dados_x
             dados_atualizados = renderizar_editor(dados_municipio)
             dados_atualizados.dropna(how='any', inplace=True)
-            st.dataframe(dados_atualizados)
+            st.markdown(f"""
+                        <style>
+                        #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div  
+                            {{    
+                                box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.25);
+                                border: 2px solid white;
+                                border-radius: 15px;
+                                padding: 15px;
+                            }}
+                        </style>
+                            """, unsafe_allow_html=True)
                                                                                                                                                                                                                                                                                                                                                                                       
             # Cria um botão para enviar a atualização e redefine o estado da sessão quando clicado           
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
