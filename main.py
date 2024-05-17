@@ -149,7 +149,7 @@ with container_data_editor:
                         situacao_atualizada = st.selectbox(dados_x.iloc[i]['Nome da Forma de Abastecimento'],options=opcoes_situacao,
                                                            index=opcoes_situacao.index(dados_x.iloc[i]['Situação']) if dados_x.iloc[i]['Situação'] in opcoes_situacao else 0,
                                                            key=f'situacao_{i}')
-                        dados_x.at[i, 'Situação'] = situacao_atualizada
+                        dados_x.at['Código da Forma de Abastecimento', 'Situação'] = situacao_atualizada
                 return dados_x
             dados_atualizados = renderizar_editor(dados_municipio)
             dados_atualizados.dropna(how='any', inplace=True)
@@ -183,8 +183,9 @@ with container_data_editor:
             
             # Verifica se o botão de envio foi clicado
             if submit:
-                for i in range(len(dados_atualizados)):
-                    dados_atualizados.at[i, 'Situação'] = st.session_state[f'situacao_{i}']   
+                #for i in range(len(dados_atualizados)):
+                #    dados_atualizados.at[i, 'Situação'] = st.session_state[f'situacao_{i}']
+                
                 dados_antigos = dados.copy()
                 dados.reset_index(drop=True, inplace=True)
                 dados.set_index('Código Forma de abastecimento', inplace=True)
