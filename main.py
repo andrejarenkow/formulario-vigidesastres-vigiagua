@@ -152,6 +152,7 @@ with container_data_editor:
                         dados_x.at[i, 'Situação'] = situacao_atualizada
                 return dados_x
             dados_atualizados = renderizar_editor(dados_municipio)
+            dados_atualizados.dropna(how='any', inplace=True)
             st.dataframe(dados_atualizados)
             st.markdown(f"""
                         <style>
