@@ -223,7 +223,11 @@ with container_data_editor:
                             mudancas = pd.concat([mudancas, pd.DataFrame([mudanca])], ignore_index=True)
 
                 # Atualizar a planilha
-                conn.update(worksheet='Tabela1', data=data_to_send)
+                @st.cache_data
+                def tabela_update(ws, data_dados):
+                    conn.update(worksheet=ws, data=data_dados)
+
+                tabela_update('Tabela1', data_to_send)
                     
                 # Exibe uma mensagem de sucesso quando a atualização é enviada
                 st.success(f'Atualização enviada!', icon="✅")
