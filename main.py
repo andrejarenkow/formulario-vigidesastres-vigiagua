@@ -185,7 +185,7 @@ with container_data_editor:
             submit = st.button('Enviar atualização!', type='primary')#, on_click=reset)
             st.markdown(f'''
             <style>
-            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(1+quantos_selectbox)}) > div           
+            #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(2+quantos_selectbox)})           
             {{
                 display: flex;
                 justify-content: center; /* Centraliza horizontalmente */
