@@ -31,7 +31,12 @@ st.write('<hr style="border: 0; height: 4px; background-color: white; margin: 0 
 st.write('<div style="margin: 20px;"></div>', unsafe_allow_html=True)
 conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 # Lê os dados de um arquivo Excel online
-dados = conn.read(worksheet='Tabela1', usecols=list(range(14)))
+@st.cache_data
+def read_dados(ws):
+    dados_function = conn.read(worksheet=ws, usecols=list(range(14)))
+    return dados_function
+
+dados = read_dados('Tabela1')
 dados['Regional de Saúde'] = dados['Regional de Saúde'].astype(str)
 container_Sbox = st.container()
 col1,colcenter2,col3 = st.columns([2,1,2])
