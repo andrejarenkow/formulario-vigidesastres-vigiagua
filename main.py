@@ -255,13 +255,13 @@ with container_data_editor:
                 }}
                 </style>
                 <style>
-                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(9) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+6))}) > div
+                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(9) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+6))}) > div > div > div > div
                 {{text-align:center;}}
                 </style>
                 """, unsafe_allow_html=True)
                 st.markdown(f"""
                 <style>
-                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+7))}) > div 
+                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+7))}) > div
                 {{
                     display: flex;
                     justify-content: center; /* Centraliza horizontalmente */
@@ -270,7 +270,7 @@ with container_data_editor:
                 }}
                 </style>
                 <style>
-                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+7))}) > div
+                #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(8) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div:nth-child({str(int(quantos_selectbox+7))}) > div > div > div > div
                 {{text-align:center;}}
                 </style>
                 """, unsafe_allow_html=True)
