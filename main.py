@@ -37,6 +37,7 @@ def read_dados(ws):
     return dados_function
 
 dados = read_dados('Tabela1')
+dados = dados[dados['Regional de Saúde']!='nan']
 dados['Regional de Saúde'] = dados['Regional de Saúde'].astype(str)
 container_Sbox = st.container()
 col1,colcenter2,col3 = st.columns([2,1,2])
@@ -222,12 +223,23 @@ with container_data_editor:
                                 }
                             mudancas = pd.concat([mudancas, pd.DataFrame([mudanca])], ignore_index=True)
 
+                @st.cache_data
+                def remove_duplicates(df, codigo_col, info_col, info_value):
+                    # Ordenar o dataframe de modo que 'Sem informação' fique por último nas duplicatas
+                    df_sorted = df.sort_values(by=[info_col], key=lambda x: x == info_value)
+                    # Remover duplicatas, mantendo a primeira ocorrência que não seja 'Sem informação'
+                    df_deduplicated = df_sorted.drop_duplicates(subset=[codigo_col], keep='first')
+                    return df_deduplicated
+                
+                # Usar a função para remover duplicatas
+                df_cleaned_to_send = remove_duplicates(data_to_send, 'Código Forma de abastecimento', 'Situação', 'Sem informação')
+                
                 # Atualizar a planilha
                 @st.cache_data
                 def tabela_update(ws, data_dados):
                     conn.update(worksheet=ws, data=data_dados)
-
-                tabela_update('Tabela1', data_to_send)
+                
+                tabela_update('Tabela1', df_cleaned_to_send)
                     
                 # Exibe uma mensagem de sucesso quando a atualização é enviada
                 st.success(f'Atualização enviada!', icon="✅")
