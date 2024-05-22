@@ -172,7 +172,7 @@ with container_data_editor:
                             }}
                         </style>
                         <style>
-                        #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child(9) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div > label
+                        #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.block-container.st-emotion-cache-1jicfl2.ea3mdgi5 > div > div > div > div:nth-child({quantos_selectbox}) > div > div > div > div.st-emotion-cache-j5r0tf.e1f1d6gn3 > div > div > div > div.st-emotion-cache-0.e1f1d6gn0 > div > div > div > div > label
                         {{
                             text-align: center;
                             display: flex;
