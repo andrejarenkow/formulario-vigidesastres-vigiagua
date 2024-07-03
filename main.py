@@ -128,7 +128,7 @@ with container_Sbox:
         )
 
         # Filtra os dados para exibir apenas as informações relevantes com base no município e tipo da forma de abastecimento selecionados
-        dados_municipio = dados[(dados['Município']==municipio)&(dados['Tipo da Forma de Abastecimento']==tipo_forma_abastecimento)][['Município','Código Forma de abastecimento','Nome da Forma de Abastecimento', 'Situação']]
+        dados_municipio = dados[(dados['Município']==municipio)&(dados['Tipo da Forma de Abastecimento']==tipo_forma_abastecimento)][['Município','Código Forma de abastecimento','Nome da Forma de Abastecimento']]
         #dados_municipio = pd.concat([dados_municipio, pd.DataFrame({'Município':[municipio, municipio], 'Código Forma de abastecimento':['', ''], 
         #                                                           'Nome da Forma de Abastecimento':['IGNORAR','IGNORAR'], 'Situação':['Funcionando','Parada/danificada']})])
         #dados_municipio['Situação'] = dados_municipio['Situação'].astype("category")
