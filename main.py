@@ -34,7 +34,8 @@ conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 # Lê os dados de um arquivo Excel online
 @st.cache_data
 def read_dados(ws):
-    dados_function = conn.read(worksheet=ws, usecols=list(range(14)))
+    dados_function = conn.read(spreadsheet='https://docs.google.com/spreadsheets/d/1V6v6pqt21cR3yHkkraQJMYdutJg2PAM1T8nKpRxd-VE/edit?usp=sharing',
+                               usecols=list(range(14)))
     return dados_function
 
 dados = read_dados('Tabela1')
